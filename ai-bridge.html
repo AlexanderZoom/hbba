@@ -1,0 +1,50 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HBBA AI Bridge — Final v1.0.1 / Core v0.7.0.28</title><style>:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#06121b;color:#d9ebf5;font-family:Segoe UI,Arial,sans-serif;font-size:16px}header,main{max-width:1400px;margin:auto;padding:18px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #244558;gap:12px}a{color:#68cfff}.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.card{border:1px solid #244558;border-radius:14px;overflow:hidden;margin:16px 0;background:#091a25}.head{padding:12px 14px;border-bottom:1px solid #244558;display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}textarea{width:100%;min-height:68vh;background:#051019;color:#d6e7ef;border:0;padding:16px;resize:vertical;font:14px/1.55 Consolas,monospace}button{background:#0d2633;color:#d5e7f0;border:1px solid #31566c;border-radius:8px;padding:9px 13px;cursor:pointer}button:hover{border-color:#68cfff}button:disabled{opacity:.45;cursor:not-allowed;border-color:#31566c}.note{border:1px solid #31566c;background:#081923;padding:12px;border-radius:10px;color:#b8cfda;margin:12px 0}.warn{border:1px solid #6f6235;background:#1a180e;padding:12px;border-radius:10px;color:#ecd979}.status{font-size:13px;color:#8fb0c2}footer{padding:12px 0;color:#8aa7b6}@media(max-width:700px){header{align-items:flex-start;flex-direction:column}textarea{font-size:13px;min-height:70vh}}</style></head><body><header><b>HBBA AI Bridge · Final v1.0.1 · Core v0.7.0.28</b><div class="top-actions"><a href="index.html">← HBBA</a> <a href="research-results.html">Research / Исследования</a> <a href="guided-session.html">Guided Session</a> <a href="ai-graph-runtime.html">AI Graph Runtime</a></div></header><main><div class="note"><b>AI Bridge = анализ темы через уже сформированный граф.</b> Он не создаёт Single/Multi-Actor Scenario. Скопируйте Prompt в новый чат: ИИ получит фактический граф и первым содержательным действием только спросит, какую тему рассматривать через него — без предварительного разбора механизмов.</div><div class="warn">Prompt формируется из <b>структуры текущего выбранного графа</b>: literal node IDs, directed edges, relation types и evidence grades. Названия выбранных behaviors намеренно не передаются как управляющие команды. Если граф не передан, вернитесь в Atlas и откройте этот раздел оттуда.</div><section class="card"><div class="head"><div><b>MASTER PROMPT</b><div id="status" class="status">Проверка данных графа…</div></div><div class="top-actions"><button id="download">Скачать Prompt .md</button><button id="copy">Копировать</button></div></div><textarea id="prompt" spellcheck="false"># HBBA AI BRIDGE — GRAPH TOPIC ANALYSIS SPEC
+
+## 0. Purpose
+You are given a concrete HBBA graph exported from the atlas. Your task is NOT to generate HBBA-SCENARIO JSON and NOT to interview the user about actors. Your task is to analyze a topic, question, situation, claim or phenomenon strictly through the supplied graph.
+
+## 1. First response
+After reading this prompt and the embedded GRAPH CONTEXT, do exactly two things:
+1. Briefly confirm only that the graph context was loaded. Do not name, summarize, rank or interpret graph mechanisms yet.
+2. Ask exactly one question: **«Какую тему, ситуацию или вопрос вы хотите рассмотреть с точки зрения этого графа?»**
+Do not start analysis, mechanism selection, path tracing or graph interpretation before the user supplies the topic.
+
+## 2. Graph authority
+- Treat the embedded GRAPH CONTEXT as the authoritative graph for this chat.
+- Use literal node IDs and directed edges from the graph.
+- Do not import absent HBBA nodes/edges from memory.
+- Behavior labels are selection provenance only. The analysis must be driven by actual nodes, relation types, directions, grades and caveats, not by the behavior names.
+- `A/B/C/D/X` are editorial edge-evidence statuses, not probabilities. X means reviewed but unresolved/insufficient/underspecified.
+- Never convert association into causality or graph membership into a temporal chain.
+
+## 3. Analysis procedure
+For each user topic:
+1. Restate the topic neutrally.
+2. Identify the graph nodes directly relevant to the topic.
+3. Trace only existing directed paths that materially bear on the topic.
+4. Explain what each relation contributes and what it does NOT establish.
+5. Separate observable facts from hypotheses about hidden states.
+6. Give alternative graph-consistent explanations when more than one path fits.
+7. State unknowns and what observation would discriminate alternatives.
+8. End with a compact synthesis: what the graph supports, what remains uncertain, and the strongest relevant limitations.
+
+## 4. No Scenario mode
+Do not output HBBA-SCENARIO-3 in this mode unless the user explicitly leaves AI Bridge and asks to use Guided Session. If the user asks for a file/import/tour workflow, tell them to use the Guided Session MASTER Prompt.
+
+## 5. No fake operations
+Do not claim that HBBA, Validator, Director, browser buttons or local files were executed unless an actual tool performed that operation.
+
+## 6. Language
+Answer in the user's language unless explicitly asked otherwise.
+
+---
+
+# GRAPH CONTEXT — CURRENT HBBA SELECTION
+
+{{HBBA_GRAPH_CONTEXT}}
+
+---
+
+## Start
+Read the graph context now, then follow section 1 exactly.
+</textarea></section><footer>Разработано Alexander Zoom · Final v1.0.1 · Core v0.7.0.28</footer></main><script>(()=>{'use strict';const p=document.querySelector('#prompt'),status=document.querySelector('#status');function readTransfer(){let ctx='';try{ctx=sessionStorage.getItem('hbba_graph_context')||'';sessionStorage.removeItem('hbba_graph_context');sessionStorage.removeItem('hbba_graph_version')}catch(_e){}if(!ctx){try{const x=JSON.parse(window.name||'{}');if(x&&x.hbba_graph_context)ctx=x.hbba_graph_context}catch(_e){}}try{window.name=''}catch(_e){}return ctx}const copyBtn=document.querySelector('#copy'),downloadBtn=document.querySelector('#download');const ctx=readTransfer();if(ctx){copyBtn.disabled=false;downloadBtn.disabled=false;p.value=p.value.replace('{{HBBA_GRAPH_CONTEXT}}',ctx);status.textContent='Граф получен из HBBA · '+ctx.length.toLocaleString()+' знаков';document.body.dataset.graphReady='true'}else{copyBtn.disabled=true;downloadBtn.disabled=true;p.value=p.value.replace('{{HBBA_GRAPH_CONTEXT}}','[GRAPH CONTEXT NOT PROVIDED — RETURN TO HBBA ATLAS]');status.textContent='Граф не передан. Вернитесь в Atlas, выберите поведение/граф и откройте этот раздел оттуда.';document.body.dataset.graphReady='false'}async function copyText(){let ok=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(p.value);ok=true}}catch(_e){}if(!ok){p.focus();p.select();try{ok=document.execCommand('copy')}catch(_e){}}status.textContent=ok?'Prompt скопирован':'Не удалось скопировать — выделите вручную'}function downloadPrompt(){const b=new Blob([p.value],{type:'text/markdown;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='HBBA_AI_BRIDGE_PROMPT_v0.7.0.28.md';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),0)}document.querySelector('#copy').onclick=copyText;document.querySelector('#download').onclick=downloadPrompt;document.body.dataset.functionalReady='true';window.HBBA_STANDALONE={copyText,downloadPrompt,graphReady:()=>!!ctx,promptText:()=>p.value}})();</script></body></html>

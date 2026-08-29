@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HBBA Edge Audit v3",
+  "type": "object",
+  "required": [
+    "format",
+    "atlas_version",
+    "edges"
+  ],
+  "properties": {
+    "format": {
+      "const": "HBBA-EDGE-AUDIT-3"
+    },
+    "atlas_version": {
+      "type": "string"
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edgeAudit"
+      }
+    }
+  },
+  "$defs": {
+    "sourceRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "citation",
+        "year",
+        "study_design",
+        "supports_relation",
+        "species_or_population",
+        "task_or_paradigm",
+        "directness",
+        "causal_design"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "citation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "doi": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pmid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "study_design": {
+          "enum": [
+            "meta_analysis",
+            "systematic_review",
+            "review",
+            "experiment",
+            "experimental_series",
+            "longitudinal",
+            "cross_sectional",
+            "observational",
+            "methods",
+            "guideline",
+            "other"
+          ],
+          "description": "Normalized study/publication design. systematic_review is reserved for explicit systematic-review methodology; generic narrative/integrative reviews use review."
+        },
+        "species_or_population": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sample_size": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "task_or_paradigm": {
+          "type": "string",
+          "minLength": 1
+        },
+        "causal_design": {
+          "enum": [
+            "causal_intervention",
+            "quasi_causal",
+            "correlational",
+            "descriptive",
+            "computational_definition",
+            "mixed",
+            "unclear"
+          ]
+        },
+        "directness": {
+          "enum": [
+            "direct",
+            "partial",
+            "indirect",
+            "conceptual"
+          ]
+        },
+        "supports_relation": {
+          "enum": [
+            "supports",
+            "partially_supports",
+            "contradicts",
+            "mixed",
+            "not_informative",
+            "context",
+            "limitations"
+          ],
+          "description": "Role of this source for this exact typed relation. supports/partially_supports are evidence; context/limitations are explicitly non-supporting contextual records and must not be counted as relation proof."
+        },
+        "effect_direction": {
+          "enum": [
+            "positive",
+            "negative",
+            "bidirectional",
+            "null",
+            "mixed",
+            "not_applicable",
+            "unclear"
+          ]
+        },
+        "effect_size": {
+          "type": [
+            "number",
+            "string",
+            "null"
+          ]
+        },
+        "confidence_interval": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "anatomical_scope": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "edgeAudit": {
+      "type": "object",
+      "required": [
+        "source",
+        "target",
+        "relation_type",
+        "audit_grade",
+        "audit_status",
+        "causal_status",
+        "summary",
+        "source_records",
+        "limitations",
+        "last_reviewed"
+      ],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "relation_type": {
+          "type": "string"
+        },
+        "audit_grade": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "X"
+          ]
+        },
+        "audit_status": {
+          "enum": [
+            "pending",
+            "in_progress",
+            "audited",
+            "rejected"
+          ]
+        },
+        "causal_status": {
+          "enum": [
+            "not_audited",
+            "causal",
+            "partial_causal",
+            "correlational",
+            "computational",
+            "ontological",
+            "mixed",
+            "unclear"
+          ]
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "human_evidence": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "animal_evidence": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "meta_analysis": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "replicated": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "direction_consistency": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "contradictory_evidence_present": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        "source_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceRecord",
+            "properties": {
+              "risk_of_bias": {
+                "enum": [
+                  "low",
+                  "some_concerns",
+                  "high",
+                  "unclear"
+                ]
+              },
+              "preregistration": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "sample_characteristics": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "effect_metric": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "multiple_estimates": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "anatomical_scope": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "task_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "population_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "last_reviewed": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

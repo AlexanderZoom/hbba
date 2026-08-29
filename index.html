@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071019">
+  <meta name="description" content="HBBA — Scientific Atlas of Human Behavioral Mechanisms">
+  <title>HBBA Final v1.0.1 — Научный атлас механизмов человеческого поведения</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="aurora"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"><span></span><b>HBBA</b></div>
+    <div class="brand-copy">
+      <h1 data-i18n="title">Научный атлас механизмов человеческого поведения</h1>
+      <p data-i18n="subtitle">Интерактивная карта механизмов человеческого действия</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <div class="status-pill" title="HBBA Final Release v1.0.1 · Scientific Core v0.7.0.28 frozen · validated specialized scope"><i></i><span>FINAL · CORE FROZEN</span></div>
+    <div class="lang-switch" aria-label="Language">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <button id="aboutBtn" class="top-about-btn" aria-label="About">ⓘ <span data-i18n="aboutShort">О проекте</span></button>
+    <a class="top-about-btn" href="research-results.html" title="Исследования и результаты / Research results">▣ <span data-i18n="researchResults">Исследования</span></a>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="sidebar left-panel">
+    <div class="side-head">
+      <span class="eyebrow">BEHAVIOR LENS</span>
+      <h2 data-i18n="combineTitle">Смешивайте поведения</h2>
+      <p data-i18n="combineText">Выберите несколько режимов — общие механизмы загорятся ярче.</p>
+    </div>
+
+    <section class="panel-section">
+      <label class="searchbox">
+        <span>⌕</span>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="агрессия, страх, ложь…">
+      </label>
+    </section>
+
+    <section class="panel-section compact">
+      <div class="section-row">
+        <span class="label" data-i18n="selected">Выбрано</span>
+        <button id="clearBtn" class="text-btn" data-i18n="clear">Сбросить</button>
+      </div>
+      <div id="selectionChips" class="chips empty"></div>
+    </section>
+
+    <section class="panel-section behavior-section">
+      <div id="categoryFilters" class="category-filters"></div>
+      <div class="section-row list-title">
+        <span class="label" data-i18n="actions">Поведения / действия</span>
+        <span id="actionCount" class="counter"></span>
+      </div>
+      <div id="behaviorList" class="behavior-list"></div>
+    </section>
+  </aside>
+
+  <section class="workspace">
+    <div class="workspace-head">
+      <div class="mode-title">
+        <span class="eyebrow">LIVE MECHANISM MAP</span>
+        <div id="activeTitle" class="active-title" data-i18n="waiting">Ожидание выбора</div>
+      </div>
+      <div class="workspace-controls">
+        <div class="view-modes" role="group" aria-label="View mode">
+          <button class="mode-btn active" data-view-mode="layman"><span>◉</span><span data-i18n="modeLayman">Обыватель</span></button>
+          <button class="mode-btn" data-view-mode="combined"><span>◫</span><span data-i18n="modeCombined">Комбо</span></button>
+          <button class="mode-btn" data-view-mode="professional"><span>⌬</span><span data-i18n="modeProfessional">Профи</span></button>
+        </div>
+        <div class="toolbar">
+          <button id="fitBtn" class="tool-btn">⌂ <span data-i18n="fit">Вместить</span></button>
+          <button id="sharedBtn" class="tool-btn">✦ <span data-i18n="sharedOnly">Общие</span></button>
+          <button id="labelsBtn" class="tool-btn active">Aa <span data-i18n="labels">Подписи</span></button>
+          <button id="evidenceBtn" class="tool-btn evidence-btn has-audit">⌁ <span data-i18n="evidenceLayer">Evidence</span> <small id="evidenceCountBadge">101/101</small></button>
+          <button id="clearPinsBtn" class="tool-btn pin-clear-btn" type="button" disabled>📌 <span data-i18n="clearPins">Снять все</span></button>
+          <span id="pinStatus" class="pin-status" aria-live="polite">📌 нет закреплений</span>
+          <button id="helpBtn" class="tool-btn help-primary-btn">ⓘ <span data-i18n="helpLegend">Как читать карту</span></button>
+          <button id="aiExportBtn" class="tool-btn ai-export-btn">⌁ <span data-i18n="aiExport">AI-контекст</span></button>
+          <a class="tool-btn ai-bridge-link hbba-graph-transfer" href="ai-bridge.html">⇄ <span data-i18n="aiBridge">AI Bridge</span></a>
+          <a class="tool-btn ai-bridge-link" href="guided-session.html">▶ <span>Guided Session</span></a>
+          <a class="tool-btn ai-bridge-link hbba-graph-transfer" href="ai-behavioral-runtime.html">◉ <span>AI Behavioral Runtime</span></a>
+          <button id="scenarioImportBtn" class="tool-btn scenario-import-btn">⬡ <span data-i18n="scenarioImport">Сценарий</span></button>
+          <button id="directorBtn" class="tool-btn director-btn">⚡ <span data-i18n="director">Директор</span></button>
+          <button id="behaviorShiftBtn" class="tool-btn behavior-shift-btn">✨ <span data-i18n="behaviorShift">Трансформировать</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="shiftBanner" class="shift-banner hidden">
+      <div class="shift-banner-main">
+        <span class="shift-badge">BEHAVIOR SHIFT</span>
+        <b id="shiftBannerTitle">—</b>
+        <span id="shiftBannerSummary"></span>
+      </div>
+      <div class="shift-banner-actions">
+        <button id="reopenShiftBtn" class="text-btn" data-i18n="shiftDetails">Что изменилось</button>
+        <button id="clearShiftBtn" class="text-btn" data-i18n="clearShift">Сбросить подсветку</button>
+      </div>
+    </div>
+    <div id="scenarioBanner" class="scenario-banner hidden">
+      <div class="scenario-banner-main">
+        <span class="scenario-badge">AI SCENARIO</span>
+        <span id="scenarioInferenceBadge" class="scenario-inference-badge hidden"></span>
+        <span class="scenario-narrative-wrap scenario-narrative-title-summary"><small>AI NARRATIVE · UNVALIDATED</small><b id="scenarioTitle">—</b><span id="scenarioSummary"></span></span>
+        <span id="scenarioEpistemicSummary" class="scenario-epistemic-summary"></span>
+      </div>
+      <div class="scenario-banner-actions">
+        <span id="scenarioIntegrityBadge" class="scenario-integrity-badge hidden"></span>
+        <button id="scenarioFocusBtn" class="text-btn scenario-focus-btn hidden" type="button">🎯 Фокус сценария</button>
+        <button id="restartTourBtn" class="text-btn hidden" data-i18n="restartTour">▶ Экскурсия</button>
+        <button id="clearScenarioBtn" class="text-btn" data-i18n="clearScenario">Очистить сценарий</button>
+      </div>
+    </div>
+    <div id="actorLegend" class="actor-legend hidden"></div>
+    <div id="modeBanner" class="mode-banner layman">
+      <span id="modeBannerIcon">◉</span>
+      <div>
+        <b id="modeBannerTitle">Обывательский режим</b>
+        <span id="modeBannerText">Понятные процессы; научные структуры собраны внутри их описаний.</span>
+      </div>
+    </div>
+    <div id="legend" class="legend"></div>
+    <div class="graph-wrap" id="graphWrap">
+      <details id="quickRelationLegend" class="relation-quick-legend">
+        <summary><span>⌁</span><b id="quickLegendTitle">Легенда линий</b><span class="legend-open-hint">▾</span></summary>
+        <div class="quick-legend-body"><div id="quickLegendItems" class="quick-legend-items"></div><button id="openFullHelpBtn" class="quick-help-open" type="button">ⓘ Все обозначения и полный гайд</button></div>
+      </details>
+      <canvas id="ambientCanvas"></canvas>
+      <svg id="graph" viewBox="0 0 1280 780" role="img" aria-label="HBBA graph">
+        <defs>
+          <filter id="nodeGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <linearGradient id="edgeGrad" x1="0" x2="1">
+            <stop offset="0" stop-color="#4e81a8" stop-opacity=".15"/>
+            <stop offset=".5" stop-color="#71c5ff" stop-opacity=".95"/>
+            <stop offset="1" stop-color="#8defc4" stop-opacity=".25"/>
+          </linearGradient>
+          <marker id="arrow" viewBox="0 0 12 12" refX="10.4" refY="6"
+                  markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse"
+                  orient="auto-start-reverse">
+            <path d="M1,1 L11,6 L1,11 L3.5,6 Z" fill="#8fdcff"></path>
+          </marker>
+          <marker id="arrowOpen" viewBox="0 0 12 12" refX="10.5" refY="6" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+            <path d="M2,1 L11,6 L2,11" fill="none" stroke="#8fdcff" stroke-width="1.5"></path>
+          </marker>
+          <marker id="circleEnd" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+            <circle cx="6" cy="6" r="3" fill="#071019" stroke="#8fdcff" stroke-width="1.5"></circle>
+          </marker>
+          <marker id="inhibitEnd" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+            <path d="M9,1 L9,11" fill="none" stroke="#8fdcff" stroke-width="2"></path>
+          </marker>
+        </defs>
+        <g id="viewport">
+          <g id="stageLabels"></g>
+          <g id="conceptOverlay"></g>
+          <g id="edges"></g>
+          <g id="nodes"></g>
+        </g>
+      </svg>
+
+      <div id="emptyState" class="empty-state">
+        <div class="brain-orbit" aria-hidden="true">
+          <div class="brain-core">◉</div>
+          <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="orb o4"></span>
+        </div>
+        <span class="hero-kicker" data-i18n="heroKicker">НЕ СМОТРЕТЬ НА МОЗГ. СМОТРЕТЬ, КАК ОН РАБОТАЕТ.</span>
+        <h2 data-i18n="emptyTitle">Соедините действия — увидьте общий механизм</h2>
+        <p data-i18n="emptyText">Наложите агрессию на манипуляцию: общие процессы вспыхнут, уникальные ветви останутся видимыми отдельно.</p>
+        <div class="preset-row">
+          <button class="preset primary" data-preset="aggression,manipulation"><span>⚡◈</span><b data-i18n="preset1">Агрессия + Манипуляция</b></button>
+          <button class="preset" data-preset="fear,deception"><span>△◇</span><b data-i18n="preset2">Страх + Ложь</b></button>
+          <button class="preset" data-preset="attachment,jealousy"><span>∞◆</span><b data-i18n="preset3">Привязанность + Ревность</b></button>
+        </div>
+      </div>
+
+      <div id="scenarioInsufficientState" class="scenario-insufficient-state hidden"></div>
+      <div id="hoverTip" class="hover-tip hidden"></div>
+      <section id="guidedTourPanel" class="guided-tour-panel hidden" aria-live="polite">
+        <div class="guided-tour-head">
+          <div>
+            <span class="guided-tour-badge">GUIDED TOUR</span>
+            <b id="guidedTourCounter">Шаг 1 / 1</b>
+          </div>
+          <button id="guidedTourExit" class="guided-tour-icon" type="button" title="Закрыть экскурсию">×</button>
+        </div>
+        <div id="guidedTourSteps" class="guided-tour-steps" aria-label="Шаги экскурсии"></div>
+        <div class="guided-tour-body">
+          <div id="guidedTourNarrativeBadge" class="guided-tour-narrative-warning">AI NARRATIVE · UNVALIDATED</div>
+          <h3 id="guidedTourTitle">—</h3>
+          <p id="guidedTourNarration"></p>
+          <div id="guidedTourLookAt" class="guided-tour-look hidden"></div>
+        </div>
+        <div class="guided-tour-actions">
+          <button id="guidedTourPrev" type="button">← <span data-i18n="tourPrev">Назад</span></button>
+          <button id="guidedTourOverview" type="button"><span data-i18n="tourOverview">Вся карта</span></button>
+          <button id="guidedTourNext" class="primary" type="button"><span data-i18n="tourNext">Следующий</span> →</button>
+        </div>
+      </section>
+      <div id="shiftContextMenu" class="shift-context-menu hidden">
+        <button id="shiftContextOpen">
+          <span>✨</span>
+          <div>
+            <b data-i18n="behaviorShift">Трансформировать</b>
+            <small data-i18n="shiftContextHint">Контрфактическое сравнение моделей</small>
+          </div>
+        </button>
+      </div>
+      <div class="zoom-hint" data-i18n="zoomHint">Колесо — масштаб • Перетаскивание — навигация</div>
+    </div>
+
+    <div class="bottom-bar">
+      <div id="metrics" class="metrics"></div>
+      <div class="bottom-legends">
+        <div class="direction-mini">
+          <span><b>→</b><span data-i18n="dirOne">в одном направлении</span></span>
+          <span><b>↔</b><span data-i18n="dirBoth">в обе стороны</span></span>
+        </div>
+        <div class="evidence-mini">
+          <span><b>A–D</b><span data-i18n="auditedMini">аудировано</span></span>
+          <span><b>X</b><span data-i18n="reviewedXMini">X = проверено, но недостаточно данных</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="sidebar right-panel">
+    <div class="inspector-head inspector-head-row">
+      <div>
+        <span class="eyebrow" data-i18n="nodeInspector">NODE INSPECTOR</span>
+        <h2 data-i18n="details">Карточка механизма</h2>
+      </div>
+      <button id="expandDetailBtn" class="icon-btn detail-expand-btn hidden" title="Открыть крупно" aria-label="Открыть карточку крупно">⛶</button>
+    </div>
+
+    <div id="detailEmpty" class="detail-empty">
+      <div class="detail-symbol">◎</div>
+      <p data-i18n="detailsHelp">Нажмите на любой узел. Здесь появится его роль, уровень и место в выбранных поведениях.</p>
+    </div>
+    <div id="detailCard" class="detail-card hidden"></div>
+
+    <section class="science-box">
+      <div class="science-title"><span>⌁</span><b data-i18n="scienceTitle">Научный статус</b></div>
+      <div class="confidence-row">
+        <span data-i18n="confidenceLabel">Статус научного ядра · evidence boundary</span>
+        <b id="confidenceValue">EVIDENCE-AUDIT-1 / INDEPENDENTLY ACCEPTED</b>
+      </div>
+      <p id="confidenceNote">Scientific Evidence / epistemic boundary независимо принят; frozen core v0.7.0.28 сохранён.</p>
+      <div class="science-boundary-note">
+        <b data-i18n="acceptanceScopeTitle">Граница принятия</b>
+        <span data-i18n="acceptanceScopeText">Независимо принят статус научного ядра в пределах evidence/epistemic boundary; это не является доказательством поведенческой эффективности HBBA, real-world predictive validity, диагностики или универсального усиления LLM.</span>
+      </div>
+      <div class="model-warning">
+        <b data-i18n="modelNotFact">МОДЕЛЬ, НЕ ФАКТ</b>
+        <span id="modelWarningText"></span>
+      </div>
+      <div class="sources-title" data-i18n="sourcesTitle">Научные опоры</div>
+      <div id="sources" class="source-mini"></div>
+      <div class="source-coverage" data-i18n="sourceCoverage">HBBA v0.7.0.28: reviewed 101/101 рёбер · A 3 · B 58 · C 27 · D 0 · X 13. Evidence/epistemic boundary: INDEPENDENTLY ACCEPTED (v0.7.0.24); это не behavioral-effectiveness PASS.</div>
+    </section>
+
+    <footer id="authorLine" class="author">Разработано Alexander Zoom</footer>
+  </aside>
+</main>
+
+<dialog id="behaviorShiftDialog" class="behavior-shift-dialog">
+  <div class="shift-dialog-head">
+    <div>
+      <div class="shift-head-line">
+        <span class="shift-pro-badge">PRO / APPLY</span>
+        <span class="shift-pro-note" data-i18n="shiftPrototypeOpen">В прототипе слой открыт</span>
+      </div>
+      <h2 data-i18n="behaviorShiftTitle">Трансформация поведения</h2>
+      <p data-i18n="behaviorShiftSubtitle">Сравните текущую модель с альтернативной и посмотрите, что придётся сохранить, убрать и добавить.</p>
+    </div>
+    <button id="closeBehaviorShift" class="icon-btn" aria-label="Закрыть">×</button>
+  </div>
+
+  <div class="shift-source-row">
+    <label>
+      <span data-i18n="shiftSource">Что меняем</span>
+      <select id="shiftSourceSelect"></select>
+    </label>
+    <div id="shiftComboContext" class="shift-combo-context"></div>
+  </div>
+
+  <div class="shift-dialog-grid">
+    <aside class="shift-target-panel">
+      <div class="shift-target-head">
+        <b data-i18n="shiftTargets">Во что можно перестроить</b>
+        <small data-i18n="shiftScoreNote">Сходство = структура графов, не вероятность изменения человека</small>
+      </div>
+      <div id="shiftTargetList" class="shift-target-list"></div>
+    </aside>
+
+    <section class="shift-analysis">
+      <div id="shiftEmptyAnalysis" class="shift-empty-analysis">
+        <span>✨</span>
+        <b data-i18n="shiftChooseTarget">Выберите целевое поведение слева</b>
+      </div>
+
+      <div id="shiftAnalysisContent" class="hidden">
+        <div class="shift-title-row">
+          <div>
+            <span class="eyebrow">COUNTERFACTUAL MODEL</span>
+            <h3 id="shiftPairTitle">—</h3>
+          </div>
+          <div class="shift-score">
+            <span data-i18n="structuralSimilarity">Структурная близость</span>
+            <b id="shiftScoreValue">0</b>
+            <small>/100</small>
+          </div>
+        </div>
+
+        <p id="shiftNarrative" class="shift-narrative"></p>
+
+        <div class="shift-diff-grid">
+          <div class="shift-diff-card keep">
+            <span>●</span><b data-i18n="shiftKept">Сохраняется</b><strong id="shiftKeptCount">0</strong>
+            <div id="shiftKeptList"></div>
+          </div>
+          <div class="shift-diff-card remove">
+            <span>−</span><b data-i18n="shiftRemoved">Уходит из модели</b><strong id="shiftRemovedCount">0</strong>
+            <div id="shiftRemovedList"></div>
+          </div>
+          <div class="shift-diff-card add">
+            <span>+</span><b data-i18n="shiftAdded">Добавляется</b><strong id="shiftAddedCount">0</strong>
+            <div id="shiftAddedList"></div>
+          </div>
+          <div class="shift-diff-card role">
+            <span>↻</span><b data-i18n="shiftRole">Меняется смысловая роль</b><strong id="shiftRoleCount">0</strong>
+            <div id="shiftRoleList"></div>
+          </div>
+        </div>
+
+        <div class="shift-practice">
+          <div class="shift-practice-head">
+            <div>
+              <span class="eyebrow">PRACTICE</span>
+              <h3 data-i18n="practicalLayer">Практический слой</h3>
+            </div>
+            <div class="audience-tabs">
+              <button class="audience-tab active" data-audience="self" data-i18n="forSelf">Для себя</button>
+              <button class="audience-tab" data-audience="other" data-i18n="forOther">Для другого человека</button>
+              <button class="audience-tab" data-audience="group" data-i18n="forGroup">Для группы</button>
+            </div>
+          </div>
+          <div class="shift-practice-warning" id="shiftPracticeWarning"></div>
+          <div id="shiftPracticeContent" class="shift-practice-content"></div>
+        </div>
+
+        <div class="shift-apply-row">
+          <div class="shift-apply-note">
+            <b data-i18n="shiftApplyMeaning">Что произойдёт:</b>
+            <span data-i18n="shiftApplyText">исходное поведение будет заменено целевым в текущей комбинации, а граф пересчитается.</span>
+          </div>
+          <button id="applyBehaviorShift" class="shift-apply-btn">
+            <span>✨</span>
+            <b data-i18n="applyTransformation">Применить трансформацию</b>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+</dialog>
+
+<dialog id="directorDialog" class="director-dialog">
+  <div class="ai-export-head">
+    <div>
+      <span class="eyebrow">OFFLINE LIVE DIRECTOR</span>
+      <h2 data-i18n="directorTitle">Команда экскурсовода</h2>
+      <p data-i18n="directorSubtitle">Бесплатный мост: вставьте короткую команду от ИИ, и HBBA сам покажет нужную часть графа.</p>
+    </div>
+    <button id="closeDirector" class="icon-btn" aria-label="Закрыть">×</button>
+  </div>
+  <div class="director-body">
+    <div class="director-examples">
+      <button type="button" data-command="HBBA:STEP 2">STEP 2</button>
+      <button type="button" data-command="HBBA:NEXT">NEXT</button>
+      <button type="button" data-command="HBBA:NODE cog_tom">NODE</button>
+      <button type="button" data-command="HBBA:PATH cog_tom>cog_prediction>cog_exec">PATH</button>
+      <button type="button" data-command="HBBA:OVERVIEW">OVERVIEW</button>
+      <button type="button" data-command="HBBA:RESUME">RESUME</button>
+    </div>
+    <textarea id="directorCommand" class="director-command" spellcheck="false" placeholder="HBBA:PATH cog_tom>cog_prediction>cog_exec"></textarea>
+    <div id="directorResult" class="director-result" aria-live="polite"></div>
+    <div class="director-actions">
+      <button id="directorRun" class="export-action primary" type="button"><span>▶</span><b data-i18n="directorShow">Показать</b></button>
+      <button id="directorResume" class="export-action" type="button"><span>↩</span><b data-i18n="directorResume">Вернуться к экскурсии</b></button>
+    </div>
+    <div class="director-help" data-i18n="directorHelp">Команды ничего не отправляют в интернет. Их исполняет только локальная страница HBBA.</div>
+  </div>
+</dialog>
+
+<dialog id="edgeAuditDialog" class="edge-audit-dialog">
+  <div class="ai-export-head">
+    <div>
+      <span class="eyebrow">SCIENTIFIC EDGE INSPECTOR</span>
+      <h2 id="edgeAuditTitle">Связь HBBA</h2>
+      <p data-i18n="edgeAuditSubtitle">Показывает статус именно стрелки, а не только двух нод.</p>
+    </div>
+    <button id="closeEdgeAudit" class="icon-btn" aria-label="Закрыть">×</button>
+  </div>
+  <div id="edgeAuditBody" class="edge-audit-body"></div>
+</dialog>
+
+<dialog id="evidenceDialog" class="evidence-dialog">
+  <div class="ai-export-head">
+    <div>
+      <span class="eyebrow">SCIENTIFIC EVIDENCE LAYER</span>
+      <h2 data-i18n="evidenceTitle">Доказательность стрелок</h2>
+      <p data-i18n="evidenceSubtitle">Фильтр относится к аудиту конкретных рёбер, а не к общему впечатлению от модели.</p>
+    </div>
+    <button id="closeEvidence" class="icon-btn" aria-label="Закрыть">×</button>
+  </div>
+  <div class="evidence-body">
+    <div class="model-evidence-audit-watermark">EVIDENCE BOUNDARY · 101/101 REVIEWED · INDEPENDENTLY ACCEPTED</div><div id="evidenceStats" class="evidence-stats"></div>
+    <div class="evidence-grade-grid">
+      <label class="evidence-grade a"><input type="checkbox" data-evidence-grade="A" checked><b>A</b><span>сильная конвергентная поддержка</span></label>
+      <label class="evidence-grade b"><input type="checkbox" data-evidence-grade="B" checked><b>B</b><span>хорошая поддержка с ограничениями</span></label>
+      <label class="evidence-grade c"><input type="checkbox" data-evidence-grade="C" checked><b>C</b><span>умеренная / косвенная / неоднородная</span></label>
+      <label class="evidence-grade d"><input type="checkbox" data-evidence-grade="D" checked><b>D</b><span>слабая / требует пересмотра</span></label>
+      <label class="evidence-grade x"><input type="checkbox" data-evidence-grade="X" checked><b>X</b><span data-i18n="xReviewedMini">review выполнен · evidence недостаточно / claim слишком широк</span></label>
+    </div>
+    <div class="relation-legend-dialog">
+      <b>RELATION SEMANTICS</b>
+      <div class="relation-legend-grid">
+        <span><i class="rel-line may"></i><strong>may_influence</strong><small>может влиять, не детерминирует</small></span>
+        <span><i class="rel-line mod"></i><strong>modulates</strong><small>меняет выраженность</small></span>
+        <span><i class="rel-line comp"></i><strong>computational_input</strong><small>вход вычисления</small></span>
+        <span><i class="rel-line impl"></i><strong>implemented_by</strong><small>уровень реализации, не причинная стадия</small></span>
+        <span><i class="rel-line part"></i><strong>participates_in</strong><small>компонент сети, не причинность</small></span>
+        <span><i class="rel-line out"></i><strong>produces_output</strong><small>физический/наблюдаемый выход</small></span>
+        <span><i class="rel-line upd"></i><strong>updates</strong><small>обновление во времени</small></span>
+        <span><i class="rel-line assoc"></i><strong>associated_with</strong><small>ассоциация / перекрытие</small></span>
+        <span><i class="rel-line inh"></i><strong>inhibits</strong><small>отрицательное влияние</small></span>
+      </div>
+    </div>
+    <label class="evidence-interactions"><input id="showInteractionsCheck" type="checkbox" checked> <span data-i18n="showScenarioInteractions">Показывать сценарные связи между участниками</span></label>
+    <div class="evidence-warning" data-i18n="evidenceWarning">HBBA v0.7.0.28: 101/101 базовых рёбер прошли relation-level review; A 3 · B 58 · C 27 · D 0 · X 13. X = review выполнен, но evidence недостаточно или claim слишком широк. A/B/C/D/X — редакционные статусы стрелок, не вероятность истины и не clinical GRADE. Evidence/epistemic boundary: INDEPENDENTLY ACCEPTED (v0.7.0.24); это не behavioral-effectiveness PASS.</div>
+  </div>
+</dialog>
+
+
+<dialog id="helpDialog" class="help-dialog">
+  <div class="ai-export-head"><div><span class="eyebrow">HBBA USER MANUAL · RU/EN</span><h2>Как читать карту / How to read the map</h2><p>Final v1.0.1 · Core v0.7.0.28 · полный RU/EN гайд · Evidence + Pin Focus · Validator 4.4.3 frozen</p></div><button id="closeHelp" class="icon-btn" aria-label="Закрыть">×</button></div>
+  <div id="helpBody" class="help-body"></div>
+</dialog>
+
+<dialog id="detailDialog" class="detail-dialog">
+  <div class="detail-dialog-head">
+    <div>
+      <span class="eyebrow" data-i18n="details">Карточка механизма</span>
+      <h2 id="detailDialogTitle">HBBA</h2>
+    </div>
+    <button id="closeDetailDialog" class="icon-btn" aria-label="Закрыть">×</button>
+  </div>
+  <div id="detailDialogContent" class="detail-dialog-content"></div>
+</dialog>
+
+<dialog id="scenarioImportDialog" class="scenario-import-dialog">
+  <div class="ai-export-head">
+    <div>
+      <span class="eyebrow">HBBA-SCENARIO</span>
+      <h2 data-i18n="scenarioImportTitle">Импорт сценария от ИИ</h2>
+      <p data-i18n="scenarioImportSubtitle">Загрузите готовый .json-файл от Guided Session или вставьте строгий JSON вручную.</p>
+    </div>
+    <button id="closeScenarioImport" class="icon-btn" aria-label="Закрыть">×</button>
+  </div>
+  <div class="scenario-import-body">
+    <div class="scenario-file-row">
+      <label class="scenario-file-btn" for="scenarioFileInput">
+        <span>📄</span><b data-i18n="loadScenarioFile">Загрузить JSON-файл</b>
+      </label>
+      <input id="scenarioFileInput" class="scenario-file-input" type="file" accept=".json,application/json">
+      <span id="scenarioFileStatus" class="scenario-file-status" data-i18n="scenarioFileHint">Файл читается только локально в браузере.</span>
+    </div>
+    <div class="scenario-paste-label" data-i18n="scenarioPasteFallback">Или вставьте JSON вручную:</div>
+    <textarea id="scenarioImportText" class="scenario-import-text" spellcheck="false"
+      placeholder='{"format":"HBBA-SCENARIO-3","inference_status":"ambiguous", ...}'></textarea>
+    <div id="scenarioValidation" class="scenario-validation" aria-live="polite"></div>
+    <div class="scenario-actions">
+      <button id="validateScenarioBtn" class="export-action">
+        <span>✓</span><b data-i18n="validateScenario">Проверить</b>
+      </button>
+      <button id="applyScenarioBtn" class="export-action primary" disabled>
+        <span>▶</span><b data-i18n="applyScenario">Показать на карте</b>
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="aiExportDialog" class="ai-export-dialog">
+  <div class="ai-export-head">
+    <div>
+      <span class="eyebrow">AI CONTEXT PACK</span>
+      <h2 data-i18n="aiExportTitle">Текстовая модель текущего графа</h2>
+      <p data-i18n="aiExportSubtitle">Готовый контекст для другой нейросети или нового диалога.</p>
+    </div>
+    <button id="closeAIExport" class="icon-btn" aria-label="Закрыть">×</button>
+  </div>
+
+  <div class="ai-export-actions">
+    <button id="copyAIExport" class="export-action primary">
+      <span>⧉</span><b data-i18n="copyAI">Копировать</b>
+    </button>
+    <button id="downloadAIExport" class="export-action">
+      <span>⇩</span><b data-i18n="downloadAI">Скачать .md</b>
+    </button>
+    <span id="aiExportStats" class="ai-export-stats"></span>
+  </div>
+
+  <div class="ai-export-help" data-i18n="aiExportHelp">
+    Вставьте текст целиком в новую нейросеть. После этого можно приводить собственные примеры и просить разбирать их относительно структуры графа.
+  </div>
+
+  <textarea id="aiExportText" class="ai-export-text" spellcheck="false" readonly></textarea>
+</dialog>
+
+<dialog id="aboutDialog">
+  <div class="dialog-head">
+    <div><span class="eyebrow">HBBA / FINAL v1.0.1 · CORE v0.7.0.28</span><h2>Human Behavioral Mechanisms Atlas</h2></div>
+    <button id="closeAbout" class="icon-btn">×</button>
+  </div>
+  <div id="aboutContent"></div>
+</dialog>
+
+<script src="data.js"></script>
+<script src="behavior-runtime-compiler.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "format": "HBBA-SCIENTIFIC-ACCEPTANCE-STATUS-1",
+  "scientific_candidate_version": "0.7.0.24",
+  "current_package_version": "0.7.0.28",
+  "status": "INDEPENDENTLY_ACCEPTED",
+  "acceptance_date": "2026-08-27",
+  "accepted_archive_sha256": "9715ebc90bbf89955b525c6847a0448e92b31d93d22e32fabf89371f1c9a7954",
+  "boundary": {
+    "relations": 101,
+    "used_sources": 78,
+    "placements": 150,
+    "distribution": {
+      "A": 3,
+      "B": 58,
+      "C": 27,
+      "D": 0,
+      "X": 13
+    },
+    "P0": 0,
+    "P1": 0,
+    "unresolved_P2": 0,
+    "P3": 0
+  },
+  "frozen_after_acceptance": [
+    "scientific topology",
+    "relation_type",
+    "Grades",
+    "source identities",
+    "source placements",
+    "evidence roles/directness",
+    "Validator 4.4.3",
+    "Measurement Contract 3.1"
+  ],
+  "next_gate": "BEHAVIORAL_BENCHMARK",
+  "note": "This records the independently accepted v0.7.0.24 scientific boundary. It is not a claim that HBBA is ground truth or a validated diagnostic model."
+}

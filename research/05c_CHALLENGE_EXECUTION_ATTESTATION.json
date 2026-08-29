@@ -1,0 +1,15 @@
+{
+  "execution_mode": "SINGLE_CONVERSATION_VIRTUAL_ISOLATION_CHALLENGE_RUN",
+  "physical_execution_independence_proven": false,
+  "external_api_used": false,
+  "user_profile_used_for_case_reasoning": false,
+  "previous_benchmark_answers_allowed_in_next_iteration": false,
+  "semantic_evaluator_independence": "virtual_procedural",
+  "candidate_sha256": "62fe79f8e2889eb89e64146137ffd9140b0624f62e81b1c7d2f324bf718bb0f3",
+  "frozen_hbba_sha256": "6d8ceeb95e97f6f7b3f952c997c3d8add4fc76204883fa32f17e489845c46c11",
+  "generation_iterations_completed": 420,
+  "primary_iterations": 240,
+  "stability_iterations": 180,
+  "semantic_reviews": 120,
+  "recovery_note": "Primary raw_responses.jsonl was restored from 200 to 240 lines using already-generated preserved generation-work; recovered iterations 201-240 matched the pre-existing sealed SHA-256 log 40/40 and restored the exact scorer input SHA-256 7bb3a321c58da32b95e745c1ab0f097793fe3d41f37017fb58357ee9f0577c57."
+}

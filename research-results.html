@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071019">
+  <meta name="description" content="HBBA Final Research Results — Challenge Benchmark and Composition Precision Benchmark">
+  <title>HBBA — Итоговые исследования / Final Research Results</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="research-results.css">
+</head>
+<body class="research-page">
+<div class="aurora"></div>
+<header class="topbar research-topbar">
+  <a class="brand research-brand" href="index.html" aria-label="HBBA Atlas">
+    <div class="brand-mark"><span></span><b>HBBA</b></div>
+    <div class="brand-copy"><h1 data-t="pageTitle">Итоговые исследования HBBA</h1><p data-t="pageSub">Final Release v1.0.1 · Scientific Core v0.7.0.28</p></div>
+  </a>
+  <div class="top-actions">
+    <div class="status-pill"><i></i><span data-t="finalPill">FINAL · CORE FROZEN</span></div>
+    <div class="lang-switch" aria-label="Language"><button class="lang-btn active" data-lang="ru">RU</button><button class="lang-btn" data-lang="en">EN</button></div>
+    <a class="top-about-btn" href="index.html">← <span data-t="backAtlas">К атласу</span></a>
+  </div>
+</header>
+<main class="research-shell">
+  <section class="hero-report">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-t="kicker">ФИНАЛЬНЫЙ НАУЧНЫЙ СТАТУС · 29.08.2026</span>
+        <h2 data-t="heroTitle">Что показали два больших теста HBBA</h2>
+        <p class="lead" data-t="heroLead">HBBA прошёл два разных экспериментальных вопроса: помогает ли доступ к HBBA в общем поведенческом рассуждении и даёт ли именно графовая топология преимущество над теми же формализованными фактами в текстовом представлении.</p>
+      </div>
+      <div class="release-card">
+        <div><span data-t="releaseLabel">Версия продукта</span><b>v1.0.1 FINAL</b></div>
+        <div><span data-t="coreLabel">Научное ядро</span><b>v0.7.0.28 · FROZEN</b></div>
+        <div><span data-t="evidenceLabel">Evidence / epistemic boundary</span><b>EVIDENCE-AUDIT-1 / INDEPENDENTLY ACCEPTED</b></div>
+        <div><span data-t="scopeLabel">Статус области применения</span><b data-t="scopeValue">СПЕЦИАЛИЗИРОВАННЫЙ ИНСТРУМЕНТ</b></div>
+      </div>
+    </div>
+    <p class="release-scope-note" data-t="evidenceScopeNote">Важно: INDEPENDENTLY ACCEPTED относится к scientific evidence / epistemic boundary ядра и не означает доказанную поведенческую эффективность HBBA.</p>
+    <div class="status-matrix">
+      <article class="status-card good"><span>01</span><b data-t="s1t">Evidence / epistemic boundary ядра</b><strong>INDEPENDENTLY ACCEPTED</strong><p data-t="s1d">81 узел, 101 canonical edge, 39 behaviors; принятие ограничено review/evidence boundary и не является effectiveness verdict.</p></article>
+      <article class="status-card bad"><span>02</span><b data-t="s2t">Универсальное усиление reasoning</b><strong>EVIDENCE_AGAINST</strong><p data-t="s2d">Challenge не показал общего преимущества HBBA над PLAIN.</p></article>
+      <article class="status-card neutral"><span>03</span><b data-t="s3t">GRAPH против эквивалентного FLAT</b><strong>NEUTRAL</strong><p data-t="s3d">Обе репрезентации решили 60/60; измеримого topology-эффекта нет.</p></article>
+      <article class="status-card open"><span>04</span><b data-t="s4t">Реальное воздействие композиций на человека</b><strong>UNTESTED</strong><p data-t="s4d">Структуры формально возникают, но их эмпирическая predictive validity ещё не проверена.</p></article>
+    </div>
+  </section>
+
+  <nav class="report-nav">
+    <a href="#experiment-1"><span>01</span><b data-t="nav1">Challenge: общее reasoning</b></a>
+    <a href="#experiment-2"><span>02</span><b data-t="nav2">Composition: GRAPH vs FLAT</b></a>
+    <a href="#combined"><span>03</span><b data-t="nav3">Общий вывод</b></a>
+    <a href="#boundaries"><span>04</span><b data-t="nav4">Границы утверждений</b></a>
+  </nav>
+
+  <section id="experiment-1" class="test-section">
+    <div class="section-head"><span class="section-num">01</span><div><span class="eyebrow">HBBA CHALLENGE BENCHMARK v1.0.1</span><h2 data-t="t1title">Тест №1 — улучшает ли HBBA общее поведенческое рассуждение?</h2><p data-t="t1subtitle">Сильная гипотеза: одна и та же модель должна в среднем точнее рассуждать о сложных поведенческих ситуациях, если получает HBBA, чем в PLAIN-условии.</p></div><div class="verdict verdict-bad">EVIDENCE_AGAINST</div></div>
+    <div class="question-box"><b data-t="question">Исследовательский вопрос</b><p data-t="t1q">Даёт ли HBBA устойчивое преимущество в evidence handling, вероятностном различении конкурирующих гипотез, ranking, uncertainty calibration, revision после новых данных, выборе discriminating test, actor isolation, causal restraint и no-force-fit restraint?</p></div>
+
+    <div class="two-col">
+      <article class="panel"><h3 data-t="design">Дизайн</h3><ul>
+        <li><b>120</b> <span data-t="t1cases">held-out cases, 10 категорий × 12</span></li>
+        <li><b>240</b> <span data-t="t1primary">primary generations: 120 PLAIN + 120 HBBA</span></li>
+        <li><b>180</b> <span data-t="t1stability">stability generations: 30 cases × 2 arms × 3 repetitions</span></li>
+        <li><b>420/420</b> <span data-t="t1total">всего generation iterations завершено</span></li>
+        <li><b>120/120</b> <span data-t="t1semantic">blind semantic comparisons</span></li>
+        <li><b>0</b> <span data-t="t1errors">pipeline integrity errors</span></li>
+      </ul></article>
+      <article class="panel"><h3 data-t="integrity">Что делало тест строгим</h3><ul>
+        <li data-t="t1i1">Pairing: PLAIN и HBBA решали одни и те же 120 задач.</li>
+        <li data-t="t1i2">Blind semantic review не знал, какой ответ был HBBA.</li>
+        <li data-t="t1i3">Graph relevance исключён из Core, чтобы HBBA не штрафовался/не вознаграждался за сам факт ссылок на граф.</li>
+        <li data-t="t1i4">Stability проверялась тремя повторениями.</li>
+        <li data-t="t1i5">Финальный HBBA реально использовал граф: 302/302 ссылок валидны и релевантны.</li>
+      </ul></article>
+    </div>
+
+    <div class="metric-row major">
+      <div><span>PLAIN CORE</span><b>85.01</b></div><div><span>HBBA CORE</span><b>84.75</b></div><div><span>HBBA − PLAIN</span><b class="neg">−0.26</b></div><div><span>95% CI</span><b>[−1.13; +0.62]</b></div><div><span>COHEN'S dz</span><b>−0.053</b></div>
+    </div>
+
+    <div class="two-col">
+      <article class="panel"><h3 data-t="paired">Парный результат</h3><div class="wtl"><div><b>59</b><span data-t="wins">побед HBBA</span></div><div><b>3</b><span data-t="ties">ничьи</span></div><div><b>58</b><span data-t="losses">поражений HBBA</span></div></div><p data-t="t1pairedNote">По детерминированному Core результат практически симметричен: средний эффект почти нулевой, доверительный интервал пересекает ноль.</p></article>
+      <article class="panel"><h3 data-t="semantic">Blind semantic evaluation</h3><div class="wtl"><div><b>39</b><span data-t="wins">побед HBBA</span></div><div><b>8</b><span data-t="ties">ничьи</span></div><div><b>73</b><span data-t="losses">поражений HBBA</span></div></div><p><span data-t="pref">Preference rate HBBA:</span> <b>35.8%</b></p></article>
+    </div>
+
+    <article class="panel table-panel"><h3 data-t="dims">Core dimensions</h3><div class="table-scroll"><table><thead><tr><th>Dimension</th><th>PLAIN</th><th>HBBA</th><th>Δ</th></tr></thead><tbody>
+      <tr><td>E · Evidence</td><td>100.00</td><td>100.00</td><td>0.00</td></tr>
+      <tr><td>Q · Probabilistic discrimination</td><td>92.03</td><td>91.69</td><td>−0.34</td></tr>
+      <tr><td>R · Candidate ranking</td><td>74.77</td><td>76.39</td><td class="pos">+1.62</td></tr>
+      <tr><td>U · Uncertainty calibration</td><td>88.13</td><td>87.31</td><td>−0.82</td></tr>
+      <tr><td>V · Sequential revision</td><td>50.69</td><td>52.78</td><td class="pos">+2.09</td></tr>
+      <tr><td>D · Discriminating-test selection</td><td>55.09</td><td>52.78</td><td>−2.31</td></tr>
+      <tr><td>A · Actor isolation</td><td>90.00</td><td>90.00</td><td>0.00</td></tr>
+      <tr><td>C · Causal / epistemic restraint</td><td>96.00</td><td>96.33</td><td class="pos">+0.33</td></tr>
+      <tr><td>N · Null / no-force-fit restraint</td><td>87.50</td><td>83.33</td><td>−4.17</td></tr>
+    </tbody></table></div></article>
+
+    <article class="panel"><h3 data-t="semanticDims">Blind semantic dimensions — HBBA W/T/L</h3><div class="semantic-grid">
+      <div><span>Evidence reasoning</span><b>34 / 24 / 62</b></div><div><span>Discrimination</span><b>19 / 81 / 20</b></div><div><span>Calibration</span><b>22 / 28 / 70</b></div><div><span>Revision</span><b>8 / 100 / 12</b></div><div><span>Usefulness</span><b>36 / 17 / 67</b></div>
+    </div></article>
+
+    <div class="two-col">
+      <article class="panel"><h3 data-t="stability">Stability</h3><div class="stability-bars"><div><span>rep-1</span><b>−0.16</b></div><div><span>rep-2</span><b>0.00</b></div><div><span>rep-3</span><b>+0.04</b></div></div><p data-t="t1stableNote">Разброс повторов составил всего 0.20 пункта: отсутствие общего преимущества было устойчивым.</p></article>
+      <article class="panel"><h3 data-t="executionLimit">Ограничение исполнения</h3><p data-t="t1limit">420 итераций были выполнены как SINGLE-CONVERSATION VIRTUAL-ISOLATION run. Физическая независимость 420 отдельных API-вызовов не доказана. Поэтому это сильный проектный результат, но не независимая многосеансовая репликация.</p></article>
+    </div>
+
+    <div class="interpretation badline"><b data-t="t1meaningTitle">Что означает результат</b><p data-t="t1meaning">Для frozen HBBA v0.7.0.28 не показано общего преимущества над PLAIN в сложном поведенческом reasoning. По preregistration итог — EVIDENCE_AGAINST сильной гипотезы «HBBA в среднем делает сильную LLM точнее в behavioral reasoning». Это не означает, что граф бесполезен как инструмент представления, сравнения или композиции.</p></div>
+  </section>
+
+  <section id="experiment-2" class="test-section">
+    <div class="section-head"><span class="section-num">02</span><div><span class="eyebrow">HBBA COMPOSITION PRECISION BENCHMARK v1.3.0</span><h2 data-t="t2title">Тест №2 — даёт ли GRAPH преимущество над теми же фактами в FLAT?</h2><p data-t="t2subtitle">Уточнённая гипотеза: HBBA не обязана делать модель «умнее»; формальный граф может уменьшать свободу интерпретации и повышать точность относительно тех же relational facts, сериализованных обычным текстом.</p></div><div class="verdict verdict-neutral">NEUTRAL_TOPOLOGY_EFFECT</div></div>
+
+    <div class="question-box"><b data-t="question">Исследовательский вопрос</b><p data-t="t2q">Если GRAPH и FLAT получают абсолютно одинаковые nodes, descriptions, stages, behavior provenance, directed canonical edges, relation types/labels и evidence grades, изменит ли именно структурированное графовое представление точность решения composition-задач?</p></div>
+
+    <article class="panel"><h3 data-t="structuralPrelude">Перед model-тестом: детерминированный structural composition scan</h3><p data-t="structuralExplain">Это не эксперимент на людях и не доказательство психологической причинности. Это проверка того, создаёт ли сам HBBA composition engine нетривиальные новые структуры при объединении behavior node sets.</p><div class="metric-row scan">
+      <div><span data-t="pairs">Пары behaviors</span><b>741</b></div><div><span data-t="pairEmergent">С emergent cross-edge</span><b>632 · 85.29%</b></div><div><span data-t="pairControl">Новый route к control</span><b>430 · 58.03%</b></div><div><span data-t="triples">Тройки behaviors</span><b>9,139</b></div><div><span data-t="tripleEmergent">С emergent structure</span><b>8,588 · 93.97%</b></div><div><span data-t="tripleOnly">Triple-only control route</span><b>1,753 · 19.18%</b></div>
+    </div><p class="small-note" data-t="nonx">После исключения X-grade edges эффект сохранялся: 594/741 pair emergent и 394/741 pair control routes; для троек 6,608/9,139 non-X control routes.</p></article>
+
+    <div class="two-col">
+      <article class="panel"><h3 data-t="t2design">Дизайн model-эксперимента</h3><ul>
+        <li><b>60</b> <span data-t="t2cases">primary composition cases</span></li>
+        <li><b>60 FLAT + 60 GRAPH = 120</b> <span data-t="t2answers">blind arm answers</span></li>
+        <li><b>7</b> <span data-t="t2families">семейств задач: 10/10/8/8/8/8/8</span></li>
+        <li><b>A/B/C/D = 15/15/15/15</b> <span data-t="t2balance">финальный баланс правильных позиций</span></li>
+        <li><b>60/60</b> <span data-t="t2truth">hidden truth независимо пересчитан</span></li>
+      </ul></article>
+      <article class="panel"><h3 data-t="t2strict">Почему сравнение чистое</h3><ul>
+        <li data-t="t2s1">GRAPH↔FLAT factual parity подтверждена 60/60.</li>
+        <li data-t="t2s2">FLAT не является «свободным эссе»: он содержит те же формализованные relational facts.</li>
+        <li data-t="t2s3">Generation arms физически разделены по пакетам и не содержат hidden reference.</li>
+        <li data-t="t2s4">Path decoys имеют одинаковую длину/relation profile и отличаются от правильного пути ровно одной edge.</li>
+        <li data-t="t2s5">Public-only predictors проверялись held-out; post-hoc search калиброван multiple-testing permutation test.</li>
+      </ul></article>
+    </div>
+
+    <div class="metric-row composition">
+      <div><span>FLAT ACCURACY</span><b>60/60 · 100%</b></div><div><span>GRAPH ACCURACY</span><b>60/60 · 100%</b></div><div><span>GRAPH − FLAT</span><b>0.00 pp</b></div><div><span>95% CI</span><b>[0.00; 0.00]</b></div><div><span>McNemar</span><b>p = 1.000</b></div>
+    </div>
+    <article class="panel"><h3 data-t="paired">Парный результат</h3><div class="wtl"><div><b>0</b><span data-t="graphWins">побед GRAPH</span></div><div><b>60</b><span data-t="ties">ничьи</span></div><div><b>0</b><span data-t="graphLosses">поражений GRAPH</span></div></div><p data-t="t2pairNote">Ответные последовательности FLAT и GRAPH совпали на всех 60 items и все ответы были правильными.</p></article>
+
+    <div class="ceiling"><div class="ceiling-icon">100</div><div><b data-t="ceilingTitle">Полный потолочный эффект</b><p data-t="ceilingText">FLAT уже достиг 100%. Поэтому GRAPH физически не мог увеличить accuracy на этом наборе. Итог NEUTRAL означает «измеримого преимущества topology не обнаружено», а не «доказано, что topology никогда не полезна».</p></div></div>
+
+    <div class="two-col">
+      <article class="panel"><h3 data-t="whatTested">Что тест действительно показывает</h3><p data-t="t2yes">Когда HBBA relational facts уже полностью и строго формализованы, GPT-5.6 Sol решает данный набор composition-задач одинаково точно как из FLAT-сериализации, так и из structured GRAPH. Дополнительный формат topology не дал измеримого прироста accuracy.</p></article>
+      <article class="panel"><h3 data-t="whatNotTested">Чего тест не показывает</h3><p data-t="t2no">Он не сравнивает HBBA с обычным неструктурированным человеческим рассказом и не проверяет, соответствует ли emergent graph реальному воздействию комбинации поведений на человека. Поэтому empirical behavioral validity остаётся UNTESTED.</p></article>
+    </div>
+
+    <div class="interpretation neutralline"><b data-t="t2meaningTitle">Главный смысл Composition-результата</b><p data-t="t2meaning">Ценность HBBA может находиться не в «особом формате графа для LLM», а в самой формализации: система превращает сложное поведенческое описание в явные nodes, typed relations, evidence grades и композиционные структуры. После такой формализации сильной модели оказалось достаточно и FLAT-представления.</p></div>
+  </section>
+
+  <section id="combined" class="test-section combined-section">
+    <div class="section-head"><span class="section-num">03</span><div><span class="eyebrow">SYNTHESIS</span><h2 data-t="combinedTitle">Что в итоге можно честно сказать о HBBA</h2></div></div>
+    <div class="conclusion-grid">
+      <article class="conclusion yes"><b data-t="c1t">Подтверждено</b><h3 data-t="c1h">HBBA — рабочая формальная система</h3><p data-t="c1p">Frozen core стабилен; composition создаёт нетривиальные graph structures; инструмент пригоден для представления, сравнения, обучения и преобразования behavioral models.</p></article>
+      <article class="conclusion no"><b data-t="c2t">Не подтверждено</b><h3 data-t="c2h">Универсальный усилитель LLM reasoning</h3><p data-t="c2p">Challenge Benchmark дал EVIDENCE_AGAINST общей прибавки точности относительно PLAIN.</p></article>
+      <article class="conclusion neutral"><b data-t="c3t">Нейтрально</b><h3 data-t="c3h">GRAPH-format лучше эквивалентного FLAT</h3><p data-t="c3p">Composition Benchmark: 100% против 100%, Δ=0. Формат topology не показал дополнительной accuracy на этом наборе.</p></article>
+      <article class="conclusion unknown"><b data-t="c4t">Открытый вопрос</b><h3 data-t="c4h">Реальная predictive validity композиций</h3><p data-t="c4p">Не проверено, предсказывают ли HBBA-композиции реальные изменения состояния, оценки и решения человека. Для этого нужны независимые empirical outcomes.</p></article>
+    </div>
+    <blockquote><b data-t="finalPosition">Финальное позиционирование:</b> <span data-t="finalPositionText">HBBA — визуальный научно-образовательный атлас и workbench для формализации, композиции, сравнения и трансформации моделей человеческого поведения. Он делает структуру рассуждения явной и проверяемой, но не читает мысли и не гарантирует прогноз поведения конкретного человека.</span></blockquote>
+  </section>
+
+  <section id="boundaries" class="test-section">
+    <div class="section-head"><span class="section-num">04</span><div><span class="eyebrow">CLAIM BOUNDARIES</span><h2 data-t="boundTitle">Границы допустимых утверждений</h2></div></div>
+    <div class="boundary-table">
+      <div class="bhead"><span data-t="claim">Утверждение</span><span data-t="status">Статус</span><span data-t="why">Почему</span></div>
+      <div><span data-t="b1a">Scientific core v0.7.0.28 прошёл принятую evidence/engineering boundary</span><b class="goodtxt">SUPPORTED</b><span data-t="b1c">Независимый scientific acceptance + frozen parity.</span></div>
+      <div><span data-t="b2a">HBBA создаёт нетривиальные formal compositions</span><b class="goodtxt">SUPPORTED</b><span data-t="b2c">Exhaustive pair/triple scan.</span></div>
+      <div><span data-t="b3a">HBBA в общем повышает behavioral reasoning сильной LLM</span><b class="badtxt">NOT SUPPORTED</b><span data-t="b3c">Challenge: Δ −0.26, CI crosses zero; preregistered EVIDENCE_AGAINST.</span></div>
+      <div><span data-t="b4a">GRAPH точнее эквивалентного FLAT на composition benchmark</span><b class="neutraltxt">NOT DEMONSTRATED</b><span data-t="b4c">100% vs 100%; полный ceiling.</span></div>
+      <div><span data-t="b5a">Композиция HBBA предсказывает решение конкретного человека</span><b class="opentxt">UNTESTED</b><span data-t="b5c">Нет независимого empirical outcome benchmark.</span></div>
+      <div><span data-t="b6a">HBBA определяет истинный мотив, ложь, диагноз или виновность</span><b class="badtxt">NOT VALIDATED / NOT CLAIMED</b><span data-t="b6c">Это выходит за scientific/epistemic boundary проекта.</span></div>
+    </div>
+  </section>
+
+  <section class="sources-section">
+    <h2 data-t="artifacts">Канонические артефакты результатов</h2>
+    <div class="artifact-links">
+      <a href="research/05a_CHALLENGE_FINAL_RESULT.json"><b>Challenge final JSON</b><span>420-iteration final effect analysis</span></a>
+      <a href="research/05b_CHALLENGE_REPORT.md"><b>Challenge report</b><span>Virtual-isolation execution summary</span></a>
+      <a href="research/06_COMPOSITION_v1.3.0_EVALUATION_RESULT.json"><b>Composition final JSON</b><span>FLAT 60/60 · GRAPH 60/60</span></a>
+      <a href="research/06c_COMPOSITION_STRUCTURAL_ANALYSIS.json"><b>Composition structural scan</b><span>741 pairs · 9,139 triples</span></a>
+      <a href="HBBA_PROJECT_STATUS.json"><b>HBBA_PROJECT_STATUS.json</b><span data-t="machineStatus">Машиночитаемый финальный статус</span></a>
+    </div>
+    <p class="small-note" data-t="historicalNote">Исторические QA/audit-файлы сохранены без переписывания их исходных verdicts. Актуальный статус проекта задаётся этой страницей, README и HBBA_PROJECT_STATUS.json.</p>
+  </section>
+</main>
+<footer class="research-footer"><span>HBBA Final Release v1.0.1 · Scientific Core v0.7.0.28</span><span data-t="footer">Разработано Alexander Zoom · финальный статус 2026-08-29</span></footer>
+<script src="research-results.js"></script>
+</body></html>

@@ -1,0 +1,49 @@
+{
+  "format": "HBBA-COMPOSITION-STRUCTURAL-ANALYSIS-1",
+  "atlas_version": "0.7.0.28",
+  "base_archive_sha256": "6d8ceeb95e97f6f7b3f952c997c3d8add4fc76204883fa32f17e489845c46c11",
+  "frozen_data_sha256": "e28db04576e9381666582866fbcf1cefc27cca50708fae28d5e81f263e60aa43",
+  "definitions": {
+    "emergent_cross_edge": "Canonical atlas edge activated by the union of selected behavior node sets but not contained inside any selected behavior individually.",
+    "decision_control_route": "Directed reachability to cog_exec using only may_influence/modulates/computational_input/updates/produces_output. This is structural possibility, not empirical effectiveness."
+  },
+  "pairs": {
+    "total": 741,
+    "with_emergent_cross_edge": 632,
+    "percent": 85.29,
+    "with_non_X_emergent_cross_edge": 594,
+    "non_X_percent": 80.16,
+    "max_emergent_edges": 10,
+    "with_new_decision_control_route": 430,
+    "decision_percent": 58.03,
+    "with_new_non_X_decision_control_route": 394,
+    "non_X_decision_percent": 53.17
+  },
+  "triples": {
+    "total": 9139,
+    "with_emergent_cross_edge": 8588,
+    "percent": 93.97,
+    "max_emergent_edges": 16,
+    "with_new_decision_control_route": 7467,
+    "decision_percent": 81.7,
+    "with_new_non_X_decision_control_route": 6608,
+    "non_X_decision_percent": 72.31,
+    "with_decision_reachability_not_available_in_any_pair": 1753,
+    "all_three_percent": 19.18
+  },
+  "emergent_edge_evidence": {
+    "unique_canonical_edges": 50,
+    "unique_by_grade": {
+      "X": 8,
+      "C": 17,
+      "B": 23,
+      "A": 2
+    },
+    "pair_occurrences_by_grade": {
+      "X": 229,
+      "C": 764,
+      "B": 670,
+      "A": 119
+    }
+  }
+}

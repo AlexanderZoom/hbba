@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "HBBA-ACTOR-PROFILE-1",
+  "title": "HBBA Actor Profile / Person Model",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "enabled"],
+  "properties": {
+    "schema": {"const": "HBBA-ACTOR-PROFILE-1"},
+    "enabled": {"type": "boolean"},
+    "strict": {"type": "boolean"},
+    "actor_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"},
+    "display_name": {"type": "string"},
+    "actor_type": {"enum": ["real_person","hypothetical_person","fictional_person","composite_profile","experimental_agent","unknown"]},
+    "demographics": {"$ref": "#/$defs/demographics"},
+    "social": {"$ref": "#/$defs/social"},
+    "relationship": {"$ref": "#/$defs/relationship"},
+    "interaction_history": {"type":"object"},
+    "current_context": {"$ref": "#/$defs/current_context"},
+    "goals": {"type":"array"},
+    "stakes": {"type":"object"},
+    "communication_profile": {"type":"object"},
+    "observations": {"type":"array"},
+    "knowledge": {"type":"object"},
+    "preferences": {"type":"array"},
+    "values_and_norms": {"type":"array"},
+    "risk_model": {"type":"object"},
+    "field_meta": {"type":"object"}
+  },
+  "$defs": {
+    "demographics": {"type":"object","additionalProperties":false,"properties":{"age":{"type":"integer","minimum":0,"maximum":120},"age_range":{"type":"string"},"sex":{"enum":["male","female","intersex","unknown","not_specified"]},"gender_identity":{"type":"string"},"primary_language":{"type":"string"},"language_proficiency":{"enum":["native","fluent","intermediate","limited"]}}},
+    "social": {"type":"object","additionalProperties":false,"properties":{"social_status":{"type":"string"},"social_status_notes":{"type":"string"},"formal_power":{"enum":["none","low","medium","high","very_high"]},"informal_influence":{"enum":["none","low","medium","high","very_high"]},"occupation":{"type":"string"},"social_role":{"type":"array","items":{"type":"string"}},"education":{"type":"string"},"domain_expertise":{"type":"array","items":{"type":"string"}}}},
+    "relationship": {"type":"object","additionalProperties":false,"properties":{"target_actor_id":{"type":"string"},"relationship_type":{"type":"array","items":{"type":"string"}},"relationship_duration":{"type":"string"},"relationship_closeness":{"type":"number","minimum":0,"maximum":5},"trust_level":{"type":"number","minimum":0,"maximum":5},"conflict_level":{"type":"number","minimum":0,"maximum":5},"dependency_level":{"type":"number","minimum":0,"maximum":5},"dependency_direction":{"type":"string"},"power_balance":{"type":"string"}}},
+    "current_context": {"type":"object","additionalProperties":false,"properties":{"fatigue":{"type":"number","minimum":0,"maximum":5},"stress":{"type":"number","minimum":0,"maximum":5},"time_pressure":{"type":"number","minimum":0,"maximum":5},"cognitive_load":{"type":"number","minimum":0,"maximum":5},"reported_arousal":{"type":"number","minimum":0,"maximum":5},"perceived_safety":{"type":"number","minimum":0,"maximum":5},"audience_context":{"type":"string"},"physical_proximity":{"type":"string"},"communication_channel":{"type":"string"}}}
+  }
+}

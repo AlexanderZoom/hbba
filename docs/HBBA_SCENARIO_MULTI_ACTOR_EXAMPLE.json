@@ -1,0 +1,206 @@
+{
+  "format": "HBBA-SCENARIO-3",
+  "inference_status": "ambiguous",
+  "title": "Замечание начальника и ответ сотрудника",
+  "summary": "Два участника обмениваются речевыми действиями. Наблюдаемое отделено от скрытых гипотез, а межличностная передача сигнала остаётся сценарной связью.",
+  "behaviors": [
+    "communication",
+    "negotiation"
+  ],
+  "actors": [
+    {
+      "id": "boss",
+      "name": "Начальник",
+      "type": "person"
+    },
+    {
+      "id": "me",
+      "name": "Сотрудник",
+      "type": "person"
+    }
+  ],
+  "observations": [
+    {
+      "id": "obs1",
+      "text": "Начальник сказал сотруднику: «ты хамишь».",
+      "kind": "direct_observation",
+      "actor": "boss"
+    },
+    {
+      "id": "obs2",
+      "text": "Сотрудник ответил объяснением своей позиции.",
+      "kind": "direct_observation",
+      "actor": "me"
+    }
+  ],
+  "active_nodes": [
+    {
+      "instance_id": "boss:act_speech",
+      "node_id": "act_speech",
+      "actor": "boss",
+      "claim_scope": "observed",
+      "role": "Наблюдаемое речевое действие начальника.",
+      "reason": "Фраза прямо дана в наблюдении.",
+      "based_on": [
+        "obs1"
+      ]
+    },
+    {
+      "instance_id": "me:obs_signal_available",
+      "node_id": "obs_signal_available",
+      "actor": "me",
+      "claim_scope": "observed",
+      "role": "Наблюдаемый/кодируемый факт: речевой сигнал начальника был доступен сотруднику.",
+      "reason": "Фраза была адресована сотруднику в общей ситуации; это не доказывает точное восприятие или понимание.",
+      "based_on": [
+        "obs1"
+      ]
+    },
+    {
+      "instance_id": "me:cog_perception",
+      "node_id": "cog_perception",
+      "actor": "me",
+      "claim_scope": "individual_hypothesis",
+      "role": "Возможная обработка речевого сигнала сотрудником.",
+      "reason": "Ответ совместим с тем, что сообщение было воспринято, но точное содержание восприятия не измерено.",
+      "based_on": [
+        "obs1",
+        "obs2"
+      ]
+    },
+    {
+      "instance_id": "me:cog_tom",
+      "node_id": "cog_tom",
+      "actor": "me",
+      "claim_scope": "individual_hypothesis",
+      "role": "Одна из возможных интерпретаций позиции начальника.",
+      "reason": "Построение модели другого совместимо с диалогом, но не является установленным фактом.",
+      "based_on": [
+        "obs1",
+        "obs2"
+      ]
+    },
+    {
+      "instance_id": "me:cog_prediction",
+      "node_id": "cog_prediction",
+      "actor": "me",
+      "claim_scope": "individual_hypothesis",
+      "role": "Возможный прогноз последствий ответа.",
+      "reason": "Прогнозирование совместимо с целенаправленным ответом, но содержание прогноза неизвестно.",
+      "based_on": [
+        "obs1",
+        "obs2"
+      ]
+    },
+    {
+      "instance_id": "me:cog_language",
+      "node_id": "cog_language",
+      "actor": "me",
+      "claim_scope": "individual_hypothesis",
+      "role": "Языковое формирование ответа как рабочая гипотеза.",
+      "reason": "Наблюдаемое речевое действие требует языковой обработки, но конкретная внутренняя реализация не измерена.",
+      "based_on": [
+        "obs2"
+      ]
+    },
+    {
+      "instance_id": "me:act_speech",
+      "node_id": "act_speech",
+      "actor": "me",
+      "claim_scope": "observed",
+      "role": "Наблюдаемое речевое действие сотрудника.",
+      "reason": "Ответ прямо указан в наблюдении.",
+      "based_on": [
+        "obs2"
+      ]
+    }
+  ],
+  "active_edges": [
+    {
+      "source": "me:obs_signal_available",
+      "target": "me:cog_perception",
+      "reason": "Базовая may_influence связь означает только, что доступность сигнала может быть входом для восприятия; восприятие остаётся гипотезой."
+    },
+    {
+      "source": "me:cog_tom",
+      "target": "me:cog_prediction",
+      "reason": "Базовая типизированная связь may_influence существует; в сценарии она остаётся гипотезой."
+    },
+    {
+      "source": "me:cog_language",
+      "target": "me:act_speech",
+      "reason": "Базовая связь may_influence означает, что языковая обработка может влиять на речевое действие, но не является единственным или достаточным механизмом его порождения."
+    }
+  ],
+  "interaction_links": [
+    {
+      "source": "boss:act_speech",
+      "target": "me:obs_signal_available",
+      "relation": "communication",
+      "reason": "Наблюдаемое речевое действие одного участника сделало сигнал доступным другому. Скрытое состояние не передаётся напрямую."
+    }
+  ],
+  "alternatives": [
+    "Goal-directed: сотрудник мог подбирать ответ для достижения рабочей цели без подробного моделирования начальника.",
+    "Learned/habitual: форма ответа могла быть привычной коммуникативной стратегией.",
+    "Situational: ответ мог определяться рабочими правилами и требованиями ситуации больше, чем скрытой мотивацией."
+  ],
+  "unknowns": [
+    "Какие слова сотрудника предшествовали замечанию?",
+    "Как сотрудник сам описывает цель ответа?",
+    "Был ли ответ заранее подготовлен или возник непосредственно в разговоре?"
+  ],
+  "tour_steps": [
+    {
+      "id": "step1",
+      "title": "Сначала наблюдаемое",
+      "narration": "Две речевые ноды относятся к разным участникам. Это факты уровня наблюдаемого, а не реконструкция их мотивов.",
+      "look_at": "на речевые действия участников",
+      "nodes": [
+        "boss:act_speech",
+        "me:act_speech"
+      ],
+      "edges": [],
+      "focus_node": "boss:act_speech"
+    },
+    {
+      "id": "step2",
+      "title": "Сценарная передача сигнала",
+      "narration": "Пунктирная связь соединяет только наблюдаемые endpoints: речевое действие начальника и доступность сигнала сотруднику. Восприятие сотрудника остаётся отдельной гипотезой.",
+      "look_at": "на пунктир между дорожками",
+      "nodes": [
+        "boss:act_speech",
+        "me:obs_signal_available",
+        "me:cog_perception"
+      ],
+      "edges": [
+        {
+          "source": "boss:act_speech",
+          "target": "me:obs_signal_available"
+        },
+        {
+          "source": "me:obs_signal_available",
+          "target": "me:cog_perception"
+        }
+      ],
+      "focus_node": "me:obs_signal_available"
+    },
+    {
+      "id": "step3",
+      "title": "Скрытая гипотеза остаётся гипотезой",
+      "narration": "Theory of Mind и прогноз не считаются установленными фактами. HBBA показывает их как возможную модель рядом с альтернативами.",
+      "look_at": "на связь may_influence внутри дорожки сотрудника",
+      "nodes": [
+        "me:cog_tom",
+        "me:cog_prediction"
+      ],
+      "edges": [
+        {
+          "source": "me:cog_tom",
+          "target": "me:cog_prediction"
+        }
+      ],
+      "focus_node": "me:cog_prediction"
+    }
+  ]
+}

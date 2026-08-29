@@ -1,0 +1,161 @@
+{
+  "format": "HBBA-CHALLENGE-FINAL-2",
+  "status": "COMPLETE",
+  "pipeline_integrity_errors": [],
+  "paired_cases": 120,
+  "effect": {
+    "format": "HBBA-CHALLENGE-EFFECT-ANALYSIS-3",
+    "status": "COMPLETE",
+    "paired_cases": 120,
+    "core_delta_mean": -0.26,
+    "core_delta_median": 0.0,
+    "bootstrap_95_ci": [
+      -1.13,
+      0.62
+    ],
+    "cohens_dz": -0.053,
+    "paired_wins_ties_losses": {
+      "hbba_wins": 59,
+      "ties": 3,
+      "hbba_losses": 58
+    },
+    "blind_semantic": {
+      "hbba_wins": 39,
+      "ties": 8,
+      "hbba_losses": 73,
+      "preference_rate": 0.358,
+      "dimension_results": {
+        "evidence_reasoning": {
+          "w": 34,
+          "t": 24,
+          "l": 62
+        },
+        "discrimination": {
+          "w": 19,
+          "t": 81,
+          "l": 20
+        },
+        "calibration": {
+          "w": 22,
+          "t": 28,
+          "l": 70
+        },
+        "revision": {
+          "w": 8,
+          "t": 100,
+          "l": 12
+        },
+        "usefulness": {
+          "w": 36,
+          "t": 17,
+          "l": 67
+        }
+      }
+    },
+    "category_deltas": {
+      "HC-A": {
+        "n": 12,
+        "mean_delta": -0.13
+      },
+      "HC-B": {
+        "n": 12,
+        "mean_delta": -2.47
+      },
+      "HC-C": {
+        "n": 12,
+        "mean_delta": 1.94
+      },
+      "HC-D": {
+        "n": 12,
+        "mean_delta": 2.23
+      },
+      "HC-E": {
+        "n": 12,
+        "mean_delta": -1.61
+      },
+      "HC-F": {
+        "n": 12,
+        "mean_delta": -2.17
+      },
+      "HC-G": {
+        "n": 12,
+        "mean_delta": 1.87
+      },
+      "HC-H": {
+        "n": 12,
+        "mean_delta": -2.73
+      },
+      "HC-I": {
+        "n": 12,
+        "mean_delta": -0.56
+      },
+      "HC-J": {
+        "n": 12,
+        "mean_delta": 1.04
+      }
+    },
+    "safety_regression": false,
+    "preregistered_interpretation": "EVIDENCE_AGAINST"
+  },
+  "stability": {
+    "format": "HBBA-CHALLENGE-STABILITY-1",
+    "status": "PASS",
+    "integrity_errors": [],
+    "runs": [
+      {
+        "responses_sha256": "5a180ea58f428e29d24116be77e7cd14e6b3b7cf604367f1ba2598e99d5b99d3",
+        "canonical_responses_sha256": "a40a48579bd5230da360a07f20a7020e7953136aa6bf651453dfccddbf9eccf8",
+        "manifest_sha256": "c4a39d26fed46e8ccd6e55417d0b97ce8b44d2c01b6f652340e611fbcc726fa1",
+        "scored_sha256": "fd6386fb5e7ee4eac3242f800a6ce0ac79df5d05d3dd485bfffa2f8ed0209766",
+        "run_id": "stability-rep1-3f01e44af61a45a1ae16a2ae30381dcd",
+        "repetition_id": "rep-1-830db31ba8244284a173350028b36817",
+        "execution_nonce": "47946531514d4d38aa3d746a3c8f33ef",
+        "series_id": "stability-5de2ef0465aa4c47877fb800580912cb",
+        "config_fingerprint": "28a46ef546c591ae910d09c4bd36970d4f9657bdc0f11646e2c43b974b07d5cd"
+      },
+      {
+        "responses_sha256": "9cb5b1d63a302de5d5712af035287d028ad2af3a562f86bdc2060433c444b99d",
+        "canonical_responses_sha256": "07b88a2f0d98a846bf2a4c1be52f84cf2035c0631e6f84dba613476cc5c71228",
+        "manifest_sha256": "0bc43bbd4c1524c02426fabf5033a46678707bbd7fe234cbcc4d1ddab95ba65c",
+        "scored_sha256": "840362a848e6403a9aef8362a4ba759d7c82426010bc21182286ed002162783a",
+        "run_id": "stability-rep2-e95aa6adc4534e59a48b059a8a396767",
+        "repetition_id": "rep-2-d8b51d4c81b14138a9e8121ea4af0a10",
+        "execution_nonce": "4301d22e0a424c5fb9a2eae678ff193f",
+        "series_id": "stability-5de2ef0465aa4c47877fb800580912cb",
+        "config_fingerprint": "28a46ef546c591ae910d09c4bd36970d4f9657bdc0f11646e2c43b974b07d5cd"
+      },
+      {
+        "responses_sha256": "48c1281b55aefefef013eb28767572dce768226420dad621cd3db1e478f3c035",
+        "canonical_responses_sha256": "576a563f4ab0837b04e041aebaa3f8cf7375c418d28789522a5766832ebdd09d",
+        "manifest_sha256": "9cb37df4d7bbc3341f70be70687e6428e98f9924c1cb5421d50f535a9d86b80f",
+        "scored_sha256": "214115f49d5aeadda5981e3d168894433dc0ac83eafcd624c803cad11a0761bb",
+        "run_id": "stability-rep3-373adb646a38442d9a2e7ba2b8fbe100",
+        "repetition_id": "rep-3-7f31870cd4db4ad0ae786a41ce4e7940",
+        "execution_nonce": "512953f3faa84b919101efcfca6d70d3",
+        "series_id": "stability-5de2ef0465aa4c47877fb800580912cb",
+        "config_fingerprint": "28a46ef546c591ae910d09c4bd36970d4f9657bdc0f11646e2c43b974b07d5cd"
+      }
+    ],
+    "repeat_core_deltas": [
+      -0.16,
+      0.0,
+      0.04
+    ],
+    "mean_delta": -0.04,
+    "delta_range": 0.2,
+    "positive_repetitions": 1
+  },
+  "preregistered_interpretation": "EVIDENCE_AGAINST",
+  "inputs_sha256": {
+    "responses": "7bb3a321c58da32b95e745c1ab0f097793fe3d41f37017fb58357ee9f0577c57",
+    "primary_manifest": "84e1e6567b30ade4b685f416f661a4416f3741f6b803178d3ce860bf1650c711",
+    "scored": "be5fc8b86349f98cc8e4eae81721b276a4e2d0a9d338a25b4cafa8857684d722",
+    "blind_pairs": "01160170ae2db0d273f00da1b471b81e9cf87cf3e197e2a1d96d686773e8bea3",
+    "mapping": "1e652ee5ad8ce031826a180ef95eff812125e2dcc123a8b00e60e5c1340dc628",
+    "blind_secret": "30f30a885b01fd3b07a2b30cb3207f9a7d3df30cc4dc036d9562cedef248f7ba",
+    "blind_provenance": "e8b0ead69a633432d384f23b443413cb641f539cfe45cfc7936478cf0f92af31",
+    "reviews": "2979c51fb89b7f2091a21d8a88726f614e7282b82edd6f371d6bfdb8c6c904cc",
+    "effect_analysis": "e20d34d6d9c1e4dc670d9219a89d7e1567e266094922f844e3e177b9ce9ade84",
+    "stability": "6020c82cbd6e2dee9e4084416c0e8f43944d56374cc63fc628aad343027ce7ea"
+  }
+}

@@ -1,0 +1,551 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HBBA-SCENARIO-3 — Validator 4.4.2 companion schema",
+  "description": "HBBA v0.6.4.3 strict public/scientific scenario schema. Free text is unvalidated narrative. Runtime Validator 4.4.3 enforces ontology-defined actor capabilities, Measurement Contract 3.1, actor/node/episode/trial locality, inference evidence invariants, PE joins, base-edge membership, and interaction contracts.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "format",
+    "title",
+    "summary",
+    "inference_status",
+    "behaviors",
+    "observations",
+    "active_nodes",
+    "active_edges",
+    "alternatives",
+    "unknowns"
+  ],
+  "properties": {
+    "format": {
+      "const": "HBBA-SCENARIO-3"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inference_status": {
+      "enum": [
+        "observations_consistent_with_model",
+        "ambiguous",
+        "insufficient_data",
+        "contradicted_by_observation"
+      ]
+    },
+    "behaviors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "text",
+          "kind"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "direct_observation",
+              "self_report",
+              "measurement_record",
+              "documented_event",
+              "task_result",
+              "documented_context"
+            ]
+          },
+          "actor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observed_node_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "enum": [
+              "person",
+              "group",
+              "environment",
+              "system"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "active_nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_scope",
+          "role",
+          "reason",
+          "based_on"
+        ],
+        "anyOf": [
+          {
+            "required": [
+              "id"
+            ]
+          },
+          {
+            "required": [
+              "instance_id",
+              "node_id",
+              "actor"
+            ]
+          }
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "instance_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "node_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "actor": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^\\S(?:.*\\S)?$"
+          },
+          "global_implementation": false,
+          "confidence": false,
+          "claim_scope": {
+            "enum": [
+              "observed",
+              "individual_hypothesis",
+              "general_implementation",
+              "measurement_supported",
+              "model_mapping"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "based_on": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "measurement": {
+            "type": "object",
+            "required": [
+              "measurement_id",
+              "subject_actor",
+              "measured_node_id",
+              "episode_id",
+              "modality",
+              "timestamp",
+              "source_type",
+              "provenance"
+            ],
+            "properties": {
+              "measurement_id": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "subject_actor": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "measured_node_id": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "episode_id": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "trial_id": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^\\S(?:.*\\S)?$"
+              },
+              "modality": {
+                "enum": [
+                  "heart_rate",
+                  "pupillometry",
+                  "emg",
+                  "cortisol_assay",
+                  "acth_assay",
+                  "autonomic_measurement",
+                  "fmri_bold",
+                  "pet",
+                  "self_report_scale",
+                  "task_score",
+                  "task_output",
+                  "model_computation",
+                  "motion_capture"
+                ]
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+              },
+              "source_type": {
+                "enum": [
+                  "clinical_measurement",
+                  "device",
+                  "laboratory_measurement",
+                  "research_dataset",
+                  "self_report",
+                  "task_output"
+                ]
+              },
+              "provenance": {
+                "enum": [
+                  "clinician_report",
+                  "device_record",
+                  "documented_record",
+                  "lab_report",
+                  "research_dataset",
+                  "self_report",
+                  "task_output",
+                  "user_supplied_measurement"
+                ]
+              },
+              "value": {
+                "type": "number"
+              },
+              "result": {
+                "type": "string",
+                "minLength": 1
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "computation_id": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^\\S(?:.*\\S)?$"
+              }
+            },
+            "additionalProperties": true,
+            "oneOf": [
+              {
+                "required": [
+                  "value"
+                ],
+                "not": {
+                  "required": [
+                    "result"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "result"
+                ],
+                "not": {
+                  "required": [
+                    "value"
+                  ]
+                }
+              }
+            ]
+          },
+          "temporal_context": {
+            "type": "object",
+            "required": [
+              "episode_id",
+              "time_scope"
+            ],
+            "properties": {
+              "episode_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "trial_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "time_scope": {
+                "enum": [
+                  "within_episode",
+                  "across_trial",
+                  "long_term"
+                ]
+              }
+            },
+            "additionalProperties": true
+          },
+          "global_outcome": false,
+          "group_compatible": false,
+          "environment_compatible": false,
+          "system_compatible": false
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "claim_scope": {
+                  "const": "measurement_supported"
+                }
+              },
+              "required": [
+                "claim_scope"
+              ]
+            },
+            "then": {
+              "required": [
+                "measurement",
+                "temporal_context"
+              ]
+            }
+          }
+        ],
+        "additionalProperties": true
+      }
+    },
+    "active_edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source",
+          "target",
+          "reason"
+        ],
+        "properties": {
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "confidence": false,
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "interaction_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source",
+          "target",
+          "relation",
+          "reason"
+        ],
+        "properties": {
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relation": {
+            "enum": [
+              "observed_signal",
+              "action_on_other",
+              "shared_context",
+              "feedback",
+              "coordination",
+              "communication",
+              "environmental_change"
+            ]
+          },
+          "confidence": false,
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": ".*\\S.*"
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": ".*\\S.*"
+      }
+    },
+    "discriminating_observations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": ".*\\S.*"
+      }
+    },
+    "tour_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "narration",
+          "nodes",
+          "edges"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "narration": {
+            "type": "string",
+            "minLength": 1
+          },
+          "look_at": {
+            "type": "string"
+          },
+          "nodes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source",
+                "target"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string"
+                },
+                "target": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "focus_node": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "supports_observation_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^\\S(?:.*\\S)?$"
+      },
+      "uniqueItems": true
+    },
+    "contradicts_observation_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^\\S(?:.*\\S)?$"
+      },
+      "uniqueItems": true
+    },
+    "inference_claim_keys": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^\\S(?:.*\\S)?$"
+      },
+      "uniqueItems": true
+    }
+  }
+}

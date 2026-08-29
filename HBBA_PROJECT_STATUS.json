@@ -1,0 +1,137 @@
+{
+  "format": "HBBA-PROJECT-STATUS-2",
+  "project": "HBBA — Human Behavioral Mechanisms Atlas",
+  "project_release_version": "1.0.1",
+  "scientific_core_version": "0.7.0.28",
+  "status": "FINAL_RELEASE__SCIENTIFIC_CORE_FROZEN",
+  "status_date": "2026-08-29",
+  "development_state": "FINALIZED",
+  "product_class": "SPECIALIZED_BEHAVIORAL_GRAPH_ATLAS_AND_WORKBENCH",
+  "scientific_evidence_boundary": {
+    "status": "INDEPENDENTLY_ACCEPTED",
+    "accepted_boundary_version": "0.7.0.24",
+    "relations": 101,
+    "used_sources": 78,
+    "source_placements": 150,
+    "nodes": 81,
+    "behaviors": 39,
+    "distribution": {
+      "A": 3,
+      "B": 58,
+      "C": 27,
+      "D": 0,
+      "X": 13
+    },
+    "status_code": "EVIDENCE-AUDIT-1 / INDEPENDENTLY ACCEPTED",
+    "scope_note": {
+      "ru": "Независимо принят именно scientific evidence / epistemic boundary научного ядра. Это не является доказательством поведенческой эффективности HBBA, реальной predictive validity, диагностической валидности или универсального усиления LLM.",
+      "en": "What was independently accepted is the scientific-evidence / epistemic boundary of the core. This is not evidence of HBBA behavioral effectiveness, real-world predictive validity, diagnostic validity, or universal LLM enhancement."
+    }
+  },
+  "experiment_1_general_behavioral_reasoning": {
+    "name": "HBBA Challenge Benchmark",
+    "benchmark_version": "1.0.1",
+    "execution_status": "COMPLETE",
+    "generation_iterations": 420,
+    "plain_core": 85.01,
+    "hbba_core": 84.75,
+    "delta_hbba_minus_plain": -0.26,
+    "bootstrap_95_ci": [
+      -1.13,
+      0.62
+    ],
+    "cohens_dz": -0.053,
+    "paired_wtl_hbba": {
+      "wins": 59,
+      "ties": 3,
+      "losses": 58
+    },
+    "blind_semantic_wtl_hbba": {
+      "wins": 39,
+      "ties": 8,
+      "losses": 73,
+      "preference_rate": 0.358
+    },
+    "stability": "PASS",
+    "graph_refs": {
+      "total": 302,
+      "valid": 302,
+      "relevant": 302,
+      "errors": 0
+    },
+    "preregistered_interpretation": "EVIDENCE_AGAINST",
+    "claim": "Universal/general behavioral-reasoning enhancement is not supported for frozen core v0.7.0.28.",
+    "physical_execution_independence_proven": false
+  },
+  "experiment_2_composition_representation": {
+    "name": "HBBA Composition Precision Benchmark",
+    "benchmark_version": "1.3.0",
+    "benchmark_validation": "PASS",
+    "execution_status": "COMPLETE",
+    "primary_cases": 60,
+    "flat": {
+      "correct": 60,
+      "total": 60,
+      "accuracy_percent": 100.0
+    },
+    "graph": {
+      "correct": 60,
+      "total": 60,
+      "accuracy_percent": 100.0
+    },
+    "delta_graph_minus_flat_pp": 0.0,
+    "bootstrap_95_ci_pp": [
+      0.0,
+      0.0
+    ],
+    "paired_wtl_graph": {
+      "wins": 0,
+      "ties": 60,
+      "losses": 0
+    },
+    "mcnemar_exact_p": 1.0,
+    "preregistered_interpretation": "NEUTRAL_TOPOLOGY_EFFECT",
+    "ceiling_effect": true,
+    "claim": "No measurable accuracy advantage of GRAPH over equivalent FLAT serialization was demonstrated on this 60-case benchmark."
+  },
+  "structural_composition_scan": {
+    "pairs": 741,
+    "pairs_emergent_cross_edge": 632,
+    "pairs_emergent_percent": 85.29,
+    "pairs_new_control_route": 430,
+    "pairs_new_control_route_percent": 58.03,
+    "non_x_pairs_emergent": 594,
+    "non_x_pairs_new_control_route": 394,
+    "triples": 9139,
+    "triples_emergent_structure": 8588,
+    "triples_emergent_percent": 93.97,
+    "triples_new_control_route": 7467,
+    "non_x_triples_new_control_route": 6608,
+    "triple_only_control_route": 1753,
+    "triple_only_percent": 19.18,
+    "interpretation": "Formal structural capability only; not empirical proof of human behavioral effects."
+  },
+  "final_product_verdict": {
+    "specialized_graph_tool": "SUPPORTED_AS_FUNCTIONAL_FORMAL_PRODUCT",
+    "formal_behavior_composition": "SUPPORTED_AS_STRUCTURAL_CAPABILITY",
+    "universal_llm_reasoning_enhancer": "NOT_SUPPORTED__EVIDENCE_AGAINST_FOR_FROZEN_CORE",
+    "graph_representation_advantage_over_equivalent_flat": "NOT_DEMONSTRATED__NEUTRAL_TOPOLOGY_EFFECT",
+    "real_world_behavioral_predictive_validity": "UNTESTED",
+    "diagnostic_or_mind_reading_system": "NOT_CLAIMED_AND_NOT_VALIDATED",
+    "recommended_positioning": {
+      "ru": "Визуальный научно-образовательный атлас и workbench для формализации, композиции, сравнения и трансформации моделей человеческого поведения.",
+      "en": "A visual scientific/educational atlas and workbench for formalizing, composing, comparing, and transforming models of human behavior."
+    }
+  },
+  "frozen_policy": {
+    "scientific_core_frozen": true,
+    "do_not_tune_to_existing_benchmarks": true,
+    "historical_verdicts_immutable": true,
+    "new_empirical_behavioral_validation_requires_new_preregistered_branch": true
+  },
+  "canonical_research_page": "research-results.html",
+  "canonical_status_document": "HBBA_PROJECT_STATUS.json",
+  "historical_status_artifacts": {
+    "frozen_data_js_note": "data.js is byte-frozen at v0.7.0.28 and therefore retains historical release-progress text. Current release UI/export status MUST come from the v1.0.1 presentation/status layer, not from historical progress fields."
+  }
+}

@@ -1,0 +1,30 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local environments / caches
+.env
+.env.*
+__pycache__/
+*.pyc
+node_modules/
+
+# Private benchmark material — keep out of public history
+private/
+benchmark-private/
+hidden_truth/
+evaluation-map/
+randomization-secret/
+*MASTER_SECRET*
+*RUN_RANDOMIZATION_SECRET*
+*GENERATION_ID_MAP*
+*EVALUATION_MAP*
+*hidden_truth*
+
+# Temporary/local artifacts
+*.tmp
+*.bak
+*.log
+*.zip

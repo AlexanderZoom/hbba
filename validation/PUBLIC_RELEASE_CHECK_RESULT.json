@@ -1,0 +1,228 @@
+{
+  "format": "HBBA-PUBLIC-RELEASE-CHECK-1",
+  "ok": true,
+  "passed": 44,
+  "total": 44,
+  "checks": [
+    {
+      "name": "required: index.html",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: styles.css",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: app.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: data.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: behavior-runtime-compiler.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: actor-profile.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: research-results.html",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: research-results.css",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: research-results.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: HBBA_PROJECT_STATUS.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: HBBA_RELEASE.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: docs/HBBA_SCIENTIFIC_ACCEPTANCE_STATUS_v0.7.0.24.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: docs/SCIENTIFIC_PROTOCOL.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: docs/SOURCES.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: docs/HBBA_EDGE_AUDIT.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: research/05a_CHALLENGE_FINAL_RESULT.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: research/05b_CHALLENGE_REPORT.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: research/06_COMPOSITION_v1.3.0_EVALUATION_RESULT.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: research/06c_COMPOSITION_STRUCTURAL_ANALYSIS.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: README.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "required: PUBLIC_SHA256_MANIFEST.txt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "frozen data.js SHA-256",
+      "ok": true,
+      "detail": "e28db04576e9381666582866fbcf1cefc27cca50708fae28d5e81f263e60aa43"
+    },
+    {
+      "name": "product release v1.0.1",
+      "ok": true,
+      "detail": "1.0.1"
+    },
+    {
+      "name": "scientific core v0.7.0.28",
+      "ok": true,
+      "detail": "0.7.0.28"
+    },
+    {
+      "name": "scientific boundary accepted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "challenge EVIDENCE_AGAINST",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "composition NEUTRAL_TOPOLOGY_EFFECT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "real-world predictive validity UNTESTED",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "challenge result file parseable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "composition COMPLETE",
+      "ok": true,
+      "detail": "COMPLETE"
+    },
+    {
+      "name": "composition FLAT 60/60",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "composition GRAPH 60/60",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "composition delta 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local links: index.html",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "local links: research-results.html",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no private filename marker: RUN_RANDOMIZATION_SECRET",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no private filename marker: GENERATION_ID_MAP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no private filename marker: RUN_EVALUATION_MAP",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no private filename marker: MASTER_SECRET",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no private filename marker: FLAT_GENERATION.zip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no private filename marker: GRAPH_GENERATION.zip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no private filename marker: EVALUATION_PACKAGE.zip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no private secret field markers in public content",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "public manifest hashes",
+      "ok": true,
+      "detail": "[]"
+    }
+  ]
+}

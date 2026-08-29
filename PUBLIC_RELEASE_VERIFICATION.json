@@ -1,0 +1,13 @@
+{
+  "format": "HBBA-PUBLIC-GITHUB-VERIFICATION-1",
+  "project_release_version": "1.0.1",
+  "scientific_core_version": "0.7.0.28",
+  "data_js_sha256": "e28db04576e9381666582866fbcf1cefc27cca50708fae28d5e81f263e60aa43",
+  "expected_data_js_sha256": "e28db04576e9381666582866fbcf1cefc27cca50708fae28d5e81f263e60aa43",
+  "readme_bilingual": true,
+  "readme_mentions_development_model": true,
+  "readme_bytes": 56333,
+  "public_file_count_before_manifest_result": 53,
+  "private_composition_assets_included": false,
+  "notes": "Public-clean package. Frozen scientific core preserved; private Composition reference surface intentionally excluded."
+}
